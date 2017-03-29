@@ -202,8 +202,7 @@ namespace gtsam {
 
     /** print */
     void print(const std::string& s="R") const;
-
-    void print(std::ostream& os) const;
+    void print(std::ostream& os, const std::string& s="R") const;
 
     /** equals with an tolerance */
     bool equals(const Rot3& p, double tol = 1e-9) const;

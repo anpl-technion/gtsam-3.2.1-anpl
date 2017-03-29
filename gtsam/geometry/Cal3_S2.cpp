@@ -56,8 +56,8 @@ void Cal3_S2::print(const std::string& s) const {
   gtsam::print(matrix(), s);
 }
 
-void Cal3_S2::print(std::ostream& os) const {
-  gtsam::print(matrix(), "", os);
+void Cal3_S2::print(std::ostream& os, const std::string& s) const {
+  gtsam::print(matrix(), s, os);
 }
 
 /* ************************************************************************* */

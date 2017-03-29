@@ -35,8 +35,8 @@ void LieVector::print(const std::string& name) const {
   gtsam::print(vector(), name);
 }
 
-void LieVector::print(std::ostream& os) const {
-  gtsam::print(vector(), "", os);
+void LieVector::print(std::ostream& os, const std::string& name) const {
+  gtsam::print(vector(), name, os);
 }
 
 } // \namespace gtsam

@@ -66,9 +66,8 @@ public:
   /// @{
 
   /// print with optional string
-  void print(const std::string& s = "") const ;
-
-  void print(std::ostream& os) const;
+  void print(const std::string& s = "") const;
+  void print(std::ostream& os, const std::string& s = "") const;
 
   /// assert equality up to a tolerance
   bool equals(const Cal3DS2& K, double tol = 10e-9) const;

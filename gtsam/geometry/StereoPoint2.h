@@ -55,8 +55,7 @@ namespace gtsam {
 
     /** print */
     void print(const std::string& s="") const;
-
-    void print(std::ostream& os) const;
+    void print(std::ostream& os, const std::string& s="") const;
 
     /** equals */
     bool equals(const StereoPoint2& q, double tol=1e-9) const {

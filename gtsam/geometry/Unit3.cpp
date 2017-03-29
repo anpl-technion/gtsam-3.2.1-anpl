@@ -103,8 +103,8 @@ void Unit3::print(const std::string& s) const {
   cout << s << ":" << p_ << endl;
 }
 
-void Unit3::print(std::ostream& os) const {
-  os << ":" << p_ << endl;
+void Unit3::print(std::ostream& os, const std::string& s) const {
+  os << s << ":" << p_ << endl;
 }
 
 /* ************************************************************************* */

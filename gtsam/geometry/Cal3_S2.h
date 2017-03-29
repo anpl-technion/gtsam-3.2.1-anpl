@@ -78,8 +78,7 @@ public:
 
   /// print with optional string
   void print(const std::string& s = "Cal3_S2") const;
-
-  void print(std::ostream& os) const;
+  void print(std::ostream& os, const std::string& s = "Cal3_S2") const;
 
   /// Check if equal up to specified tolerance
   bool equals(const Cal3_S2& K, double tol = 10e-9) const;

@@ -28,8 +28,8 @@ void Cal3DS2::print(const std::string& s_) const {
   Base::print(s_);
 }
 
-void Cal3DS2::print(std::ostream& os) const {
-  Base::print(os);
+void Cal3DS2::print(std::ostream& os, const std::string& s_) const {
+  Base::print(os, s_);
 }
 
 /* ************************************************************************* */

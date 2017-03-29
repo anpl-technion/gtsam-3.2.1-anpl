@@ -47,8 +47,8 @@ void Rot2::print(const string& s) const {
   cout << s << ": " << theta() << endl;
 }
 
-void Rot2::print(ostream& os) const {
-  os << "theta" << ": " << theta() << endl;
+void Rot2::print(std::ostream& os, const string& s) const {
+  os << s << ": " << theta() << endl;
 }
 
 /* ************************************************************************* */

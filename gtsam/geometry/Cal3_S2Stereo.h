@@ -61,10 +61,9 @@ namespace gtsam {
       std::cout << s << "Baseline: " << b_ << std::endl;
     }
 
-    void print(std::ostream& os) const {
-      os << "K: ";
-      K_.print(os);
-      os << "Baseline: " << b_ << std::endl;
+    void print(std::ostream& os, const std::string& s = "") const {
+      K_.print(os, s+"K: ");
+      os << s << "Baseline: " << b_ << std::endl;
     }
 
     /// Check if equal up to specified tolerance

@@ -49,8 +49,8 @@ void Pose2::print(const string& s) const {
   cout << s << "(" << t_.x() << ", " << t_.y() << ", " << r_.theta() << ")" << endl;
 }
 
-void Pose2::print(ostream& os) const {
-  os << "(" << t_.x() << ", " << t_.y() << ", " << r_.theta() << ")" << endl;
+void Pose2::print(ostream& os, const string& s) const {
+  os << s << "(" << t_.x() << ", " << t_.y() << ", " << r_.theta() << ")" << endl;
 }
 
 /* ************************************************************************* */

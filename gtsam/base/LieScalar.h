@@ -42,9 +42,7 @@ namespace gtsam {
 
     /** print @param name optional string naming the object */
     void print(const std::string& name="") const;
-
-    void print(std::ostream& os) const;
-
+    void print(std::ostream& os, const std::string& name="") const;
     /** equality up to tolerance */
     bool equals(const LieScalar& expected, double tol=1e-5) const {
       return fabs(expected.d_ - d_) <= tol;

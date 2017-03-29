@@ -55,8 +55,8 @@ void Cal3Bundler::print(const std::string& s) const {
   gtsam::print((Vector)(Vector(5) << f_, k1_, k2_, u0_, v0_), s + ".K");
 }
 
-void Cal3Bundler::print(std::ostream& os) const {
-  gtsam::print((Vector)(Vector(5) << f_, k1_, k2_, u0_, v0_), ".K", os);
+void Cal3Bundler::print(std::ostream& os, const std::string& s) const {
+  gtsam::print((Vector)(Vector(5) << f_, k1_, k2_, u0_, v0_), s + ".K", os);
 }
 
 /* ************************************************************************* */

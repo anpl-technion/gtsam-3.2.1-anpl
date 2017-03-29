@@ -96,8 +96,7 @@ public:
 
   /** print with optional string */
   void print(const std::string& s = "") const;
-
-  void print(std::ostream& os) const;
+  void print(std::ostream& os, const std::string& s = "") const;
 
   /** assert equality up to a tolerance */
   bool equals(const Pose2& pose, double tol = 1e-9) const;

@@ -70,8 +70,8 @@ public:
     pose_.print(s);
   }
 
-  virtual void print(std::ostream& os) const {
-    pose_.print(os);
+  virtual void print(std::ostream& os, const std::string& s = "") const {
+    pose_.print(os, s);
   }
 
   /// check equality to another camera

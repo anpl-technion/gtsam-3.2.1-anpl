@@ -56,13 +56,11 @@ void PoseRTV::print(const string& s) const {
   v_.print("  V");
 }
 
-void PoseRTV::print(std::ostream& os) const {
-  os << ":" << endl;
-  gtsam::print((Vector)R().xyz(), "  R:rpy");
-  os << "  T";
-  t().print(os);
-  os << "  V";
-  v_.print(os);
+void PoseRTV::print(std::ostream& os, const string& s) const {
+  os << s << ":" << endl;
+  gtsam::print((Vector)R().xyz(), "  R:rpy", os);
+  t().print(os, "  T");
+  v_.print(os, "  V");
 }
 
 /* ************************************************************************* */

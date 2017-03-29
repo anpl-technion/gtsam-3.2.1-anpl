@@ -121,9 +121,10 @@ void Gaussian::print(const string& name) const {
   gtsam::print(thisR(), "Gaussian");
 }
 
-void Gaussian::print(ostream& os) const {
+void Gaussian::print(ostream& os, const string& name) const {
   gtsam::print(thisR(), "Gaussian", os);
 }
+
 /* ************************************************************************* */
 bool Gaussian::equals(const Base& expected, double tol) const {
   const Gaussian* p = dynamic_cast<const Gaussian*> (&expected);
@@ -264,8 +265,8 @@ void Diagonal::print(const string& name) const {
   gtsam::print(sigmas_, name + "diagonal sigmas");
 }
 
-void Diagonal::print(std::ostream& os) const {
-  gtsam::print(sigmas_, "diagonal sigmas", os);
+void Diagonal::print(ostream& os, const string& name) const {
+  gtsam::print(sigmas_, name + "diagonal sigmas", os);
 }
 
 /* ************************************************************************* */
@@ -339,9 +340,9 @@ void Constrained::print(const std::string& name) const {
   gtsam::print(mu_, name + "constrained mu");
 }
 
-void Constrained::print(std::ostream& os) const {
-  gtsam::print(sigmas_, "constrained sigmas", os);
-  gtsam::print(mu_, "constrained mu", os);
+void Constrained::print(ostream& os, const std::string& name) const {
+  gtsam::print(sigmas_, name + "constrained sigmas", os);
+  gtsam::print(mu_, name + "constrained mu", os);
 }
 
 /* ************************************************************************* */
@@ -516,8 +517,8 @@ void Isotropic::print(const string& name) const {
   cout << name << "isotropic sigma " << " " << sigma_ << endl;
 }
 
-void Isotropic::print(ostream& os) const {
-  os << "isotropic sigma " << " " << sigma_ << endl;
+void Isotropic::print(ostream& os, const string& name) const {
+  os << name << "isotropic sigma " << " " << sigma_ << endl;
 }
 
 /* ************************************************************************* */
@@ -557,8 +558,8 @@ void Unit::print(const std::string& name) const {
   cout << name << "unit (" << dim_ << ") " << endl;
 }
 
-void Unit::print(std::ostream& os) const {
-  os << "unit (" << dim_ << ") " << endl;
+void Unit::print(ostream& os, const std::string& name) const {
+  os << name << "unit (" << dim_ << ") " << endl;
 }
 
 /* ************************************************************************* */
@@ -673,8 +674,8 @@ void Base::reweight(Matrix &A1, Matrix &A2, Matrix &A3, Vector &error) const {
 void Null::print(const std::string &s="") const
 { cout << s << "null ()" << endl; }
 
-void Null::print(std::ostream &os) const
-{ os << "null ()" << endl; }
+void Null::print(ostream& os, const std::string &s="") const
+{ os << s << "null ()" << endl; }
 
 Null::shared_ptr Null::Create()
 { return shared_ptr(new Null()); }
@@ -697,8 +698,8 @@ double Fair::weight(const double &error) const
 void Fair::print(const std::string &s="") const
 { cout << s << "fair (" << c_ << ")" << endl; }
 
-void Fair::print(std::ostream &os) const
-{ os << "fair (" << c_ << ")" << endl; }
+void Fair::print(ostream& os, const std::string &s="") const
+{ os << s << "fair (" << c_ << ")" << endl; }
 
 bool Fair::equals(const Base &expected, const double tol) const {
   const Fair* p = dynamic_cast<const Fair*> (&expected);
@@ -729,8 +730,8 @@ void Huber::print(const std::string &s="") const {
   cout << s << "huber (" << k_ << ")" << endl;
 }
 
-void Huber::print(std::ostream &os) const {
-  os << "huber (" << k_ << ")" << endl;
+void Huber::print(ostream& os, const std::string &s="") const {
+  os << s << "huber (" << k_ << ")" << endl;
 }
 
 bool Huber::equals(const Base &expected, const double tol) const {
@@ -763,8 +764,8 @@ void Cauchy::print(const std::string &s="") const {
   cout << s << "cauchy (" << k_ << ")" << endl;
 }
 
-void Cauchy::print(std::ostream &os) const {
-  os << "cauchy (" << k_ << ")" << endl;
+void Cauchy::print(ostream& os, const std::string &s="") const {
+  os << s << "cauchy (" << k_ << ")" << endl;
 }
 
 bool Cauchy::equals(const Base &expected, const double tol) const {
@@ -797,8 +798,8 @@ void Tukey::print(const std::string &s="") const {
   std::cout << s << ": Tukey (" << c_ << ")" << std::endl;
 }
 
-void Tukey::print(std::ostream &os) const {
-  os << ": Tukey (" << c_ << ")" << std::endl;
+void Tukey::print(ostream& os, const std::string &s="") const {
+  os << s << ": Tukey (" << c_ << ")" << std::endl;
 }
 
 bool Tukey::equals(const Base &expected, const double tol) const {
@@ -827,8 +828,8 @@ void Welsh::print(const std::string &s="") const {
   std::cout << s << ": Welsh (" << c_ << ")" << std::endl;
 }
 
-void Welsh::print(std::ostream &os) const {
-  os << ": Welsh (" << c_ << ")" << std::endl;
+void Welsh::print(ostream& os, const std::string &s="") const {
+  os << s << ": Welsh (" << c_ << ")" << std::endl;
 }
 
 bool Welsh::equals(const Base &expected, const double tol) const {
@@ -852,9 +853,9 @@ void Robust::print(const std::string& name) const {
   noise_->print(name);
 }
 
-void Robust::print(std::ostream& os) const {
-  robust_->print(os);
-  noise_->print(os);
+void Robust::print(ostream& os, const std::string& name) const {
+  robust_->print(os, name);
+  noise_->print(os, name);
 }
 
 bool Robust::equals(const Base& expected, double tol) const {

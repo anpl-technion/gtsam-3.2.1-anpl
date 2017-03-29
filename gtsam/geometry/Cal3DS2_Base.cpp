@@ -43,9 +43,9 @@ void Cal3DS2_Base::print(const std::string& s_) const {
   gtsam::print(Vector(k()), s_ + ".k");
 }
 
-void Cal3DS2_Base::print(std::ostream& os) const {
-  gtsam::print(K(), ".K", os);
-  gtsam::print(Vector(k()), ".k", os);
+void Cal3DS2_Base::print(std::ostream& os, const std::string& s_) const {
+  gtsam::print(K(), s_ + ".K", os);
+  gtsam::print(Vector(k()), s_ + ".k", os);
 }
 
 /* ************************************************************************* */

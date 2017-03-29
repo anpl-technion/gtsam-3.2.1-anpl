@@ -233,10 +233,13 @@ namespace gtsam {
 
 
   ostream &operator<<(ostream &os, const Values& values) {
-    os << "Values with " << values.size() << " values:" << endl;
+    const std::string& str = "";
+    const KeyFormatter& keyFormatter = DefaultKeyFormatter;
+    os << str << "Values with " << values.size() << " values:" << endl;
     for(Values::const_iterator key_value = values.begin(); key_value != values.end(); ++key_value) {
-      os << "Value " << key_value->key << ": ";
+      os << "Value " << keyFormatter(key_value->key) << ": ";
       key_value->value.print(os);
     }
+    return os;
   }
 }

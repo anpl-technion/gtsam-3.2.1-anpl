@@ -34,8 +34,8 @@ void Rot3::print(const std::string& s) const {
   gtsam::print((Matrix)matrix(), s);
 }
 
-void Rot3::print(std::ostream& os) const {
-  gtsam::print((Matrix)matrix(), "R", os);
+void Rot3::print(std::ostream& os, const std::string& s) const {
+  gtsam::print((Matrix)matrix(), s, os);
 }
 
 /* ************************************************************************* */

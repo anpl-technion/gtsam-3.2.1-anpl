@@ -138,11 +138,9 @@ public:
     K_.print(s + ".calibration");
   }
 
-  void print(std::ostream& os) const {
-    os << "PinholeCamera.pose ";
-    pose_.print(os);
-    os << "PinholeCamera.calibration";
-    K_.print(os);
+  void print(std::ostream& os, const std::string& s = "PinholeCamera") const {
+    pose_.print(os, s + ".pose");
+    K_.print(os, s + ".calibration");
   }
 
   /// @}

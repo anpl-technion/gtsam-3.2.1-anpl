@@ -120,12 +120,13 @@ void Pose3::print(const string& s) const {
   t_.print("t: ");
 }
 
-void Pose3::print(ostream& os) const {
-  os << "R:\n";
-  R_.print(os);
-  os << "t: ";
-  t_.print(os);
+void Pose3::print(ostream& os, const string& s) const {
+  os << s;
+  R_.print(os, "R:\n");
+  t_.print(os, "t: ");
 }
+
+
 
 /* ************************************************************************* */
 bool Pose3::equals(const Pose3& pose, double tol) const {

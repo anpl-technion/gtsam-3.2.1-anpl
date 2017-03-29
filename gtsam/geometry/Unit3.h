@@ -72,8 +72,7 @@ public:
 
   /// The print fuction
   void print(const std::string& s = std::string()) const;
-
-  void print(std::ostream& os) const;
+  void print(std::ostream& os, const std::string& s = std::string()) const;
 
   /// The equals function with tolerance
   bool equals(const Unit3& s, double tol = 1e-9) const {

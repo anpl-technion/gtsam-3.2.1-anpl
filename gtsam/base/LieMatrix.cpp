@@ -24,8 +24,8 @@ void LieMatrix::print(const std::string& name) const {
   gtsam::print(matrix(), name);
 }
 
-void LieMatrix::print(std::ostream& os) const {
-  gtsam::print(matrix(), "", os);
+void LieMatrix::print(std::ostream& os, const std::string& name) const {
+  gtsam::print(matrix(), name, os);
 }
 
 }

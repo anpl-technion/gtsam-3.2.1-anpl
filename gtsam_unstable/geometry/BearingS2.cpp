@@ -18,8 +18,8 @@ void BearingS2::print(const std::string& s) const {
   cout << s << " azimuth: " << azimuth_.theta() << " elevation: " << elevation_.theta() << endl;
 }
 
-void BearingS2::print(std::ostream& os) const {
-  os << " azimuth: " << azimuth_.theta() << " elevation: " << elevation_.theta() << endl;
+void BearingS2::print(std::ostream& os, const std::string& s) const {
+  os << s << " azimuth: " << azimuth_.theta() << " elevation: " << elevation_.theta() << endl;
 }
 
 /* ************************************************************************* */

@@ -97,7 +97,7 @@ namespace gtsam {
     virtual void print(const std::string& str = "") const = 0;
 
     /** Print this value, for debugging and unit tests */
-    virtual void print(std::ostream& os) const = 0;
+    virtual void print(std::ostream& os, const std::string& str = "") const = 0;
 
     /** Return the dimensionality of the tangent space of this value.  This is
      * the dimensionality of \c delta passed into retract() and of the vector
