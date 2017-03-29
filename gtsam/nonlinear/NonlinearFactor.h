@@ -242,6 +242,16 @@ public:
     this->noiseModel_->print("  noise model: ");
   }
 
+
+  GTSAM_EXPORT friend std::ostream &operator<<(std::ostream &os, const NoiseModelFactor& factor) {
+    os << "keys = { ";
+    BOOST_FOREACH(Key key, factor.keys()) { os << key << " "; }
+    os << "}" << std::endl;
+    os << "  noise model: ";
+    factor.noiseModel_->print(os);
+    return os;
+  }
+
   /** Check if two factors are equal */
   virtual bool equals(const NonlinearFactor& f, double tol = 1e-9) const {
     const NoiseModelFactor* e = dynamic_cast<const NoiseModelFactor*>(&f);
