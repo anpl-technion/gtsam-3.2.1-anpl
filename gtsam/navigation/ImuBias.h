@@ -128,6 +128,12 @@ namespace imuBias {
       std::cout << s + ".biasGyro [" << biasGyro_.transpose() << "]" << std::endl;
     }
 
+    void print(std::ostream& os) const {
+        // explicit printing for now.
+        os << ".biasAcc [" << biasAcc_.transpose() << "]" << std::endl;
+        os << ".biasGyro [" << biasGyro_.transpose() << "]" << std::endl;
+    }
+
     /** equality up to tolerance */
     inline bool equals(const ConstantBias& expected, double tol=1e-5) const {
       return equal_with_abs_tol(biasAcc_, expected.biasAcc_, tol)
