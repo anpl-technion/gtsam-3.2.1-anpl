@@ -393,7 +393,7 @@ ostream &operator<<(ostream &os, const NonlinearFactorGraph& graph) {
     os << "NonlinearFactorGraph: " << "size: " << graph.size() << endl;
     for (size_t i = 0; i < graph.factors_.size(); i++) {
         if (graph.factors_[i] != NULL) {
-            os << "factor " << i << ": " << graph.factors_[i];
+            os << "factor " << i << ": " << *graph.factors_[i];
         }
     }
     return os;
