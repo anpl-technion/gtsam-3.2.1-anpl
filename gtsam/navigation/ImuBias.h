@@ -128,10 +128,10 @@ namespace imuBias {
       std::cout << s + ".biasGyro [" << biasGyro_.transpose() << "]" << std::endl;
     }
 
-    void print(std::ostream& os) const {
-        // explicit printing for now.
-        os << ".biasAcc [" << biasAcc_.transpose() << "]" << std::endl;
-        os << ".biasGyro [" << biasGyro_.transpose() << "]" << std::endl;
+    void print(std::ostream& os, const std::string& s = "") const {
+      // explicit printing for now.
+      os << s + ".biasAcc [" << biasAcc_.transpose() << "]" << std::endl;
+      os << s + ".biasGyro [" << biasGyro_.transpose() << "]" << std::endl;
     }
 
     /** equality up to tolerance */
