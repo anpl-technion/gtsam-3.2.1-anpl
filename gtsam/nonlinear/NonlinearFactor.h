@@ -89,6 +89,14 @@ public:
     std::cout << "}" << std::endl;
   }
 
+  virtual void print(std::ostream& os, const std::string& s = "",
+                     const KeyFormatter& keyFormatter = DefaultKeyFormatter) const
+  {
+    os << s << "  keys = { ";
+    BOOST_FOREACH(Key key, this->keys()) { os << keyFormatter(key) << " "; }
+    os << "}" << std::endl;
+  }
+
   GTSAM_EXPORT friend std::ostream &operator<<(std::ostream &os, const NonlinearFactor& factor) {
     os << "keys = { ";
     BOOST_FOREACH(Key key, factor.keys()) { os << key << " "; }
@@ -240,6 +248,15 @@ public:
   {
     Base::print(s, keyFormatter);
     this->noiseModel_->print("  noise model: ");
+  }
+
+  /** Print */
+  virtual void print(std::ostream& os, const std::string& s = "",
+                     const KeyFormatter& keyFormatter = DefaultKeyFormatter) const
+  {
+    Base::print(os, s, keyFormatter);
+    os << "  noise model: ";
+    this->noiseModel_->print(os);
   }
 
 

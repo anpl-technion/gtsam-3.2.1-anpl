@@ -32,11 +32,22 @@ namespace gtsam {
     return this->printKeys(s, formatter);
   }
 
+  void Factor::print(std::ostream& os, const std::string& s, const KeyFormatter& formatter) const
+  {
+    return this->printKeys(os, s, formatter);
+  }
+
   /* ************************************************************************* */
   void Factor::printKeys(const std::string& s, const KeyFormatter& formatter) const {
     std::cout << s << " ";
     BOOST_FOREACH(Key key, keys_) std::cout << " " << formatter(key);
     std::cout << std::endl;
+  }
+
+  void Factor::printKeys(std::ostream& os, const std::string& s, const KeyFormatter& formatter) const {
+    os << s << " ";
+    BOOST_FOREACH(Key key, keys_) os << " " << formatter(key);
+    os << std::endl;
   }
 
   /* ************************************************************************* */

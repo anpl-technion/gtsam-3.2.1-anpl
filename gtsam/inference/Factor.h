@@ -133,9 +133,11 @@ namespace gtsam {
 
     /// print
     void print(const std::string& s = "Factor", const KeyFormatter& formatter = DefaultKeyFormatter) const;
+    void print(std::ostream& os, const std::string& s = "Factor", const KeyFormatter& formatter = DefaultKeyFormatter) const;
 
     /// print only keys
     void printKeys(const std::string& s = "Factor", const KeyFormatter& formatter = DefaultKeyFormatter) const;
+    void printKeys(std::ostream& os, const std::string& s = "Factor", const KeyFormatter& formatter = DefaultKeyFormatter) const;
 
   protected:
     /// check equality

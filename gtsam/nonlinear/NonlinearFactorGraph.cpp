@@ -55,6 +55,15 @@ void NonlinearFactorGraph::print(const std::string& str, const KeyFormatter& key
   }
 }
 
+void NonlinearFactorGraph::print(std::ostream os, const std::string& str, const KeyFormatter& keyFormatter) const {
+  os << str << "size: " << size() << endl;
+  for (size_t i = 0; i < factors_.size(); i++) {
+    stringstream ss;
+    ss << "factor " << i << ": ";
+    if (factors_[i] != NULL) factors_[i]->print(os, ss.str(), keyFormatter);
+  }
+}
+
 /* ************************************************************************* */
 bool NonlinearFactorGraph::equals(const NonlinearFactorGraph& other, double tol) const {
   return Base::equals(other, tol);
