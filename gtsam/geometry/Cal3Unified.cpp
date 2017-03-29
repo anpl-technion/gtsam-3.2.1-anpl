@@ -39,6 +39,10 @@ void Cal3Unified::print(const std::string& s) const {
   gtsam::print((Vector)(Vector(1) << xi_), s + ".xi");
 }
 
+void Cal3Unified::print(std::ostream& os) const {
+  Base::print(os);
+  gtsam::print((Vector)(Vector(1) << xi_), ".xi", os);
+}
 /* ************************************************************************* */
 bool Cal3Unified::equals(const Cal3Unified& K, double tol) const {
   if (fabs(fx_ - K.fx_) > tol || fabs(fy_ - K.fy_) > tol || fabs(s_ - K.s_) > tol ||

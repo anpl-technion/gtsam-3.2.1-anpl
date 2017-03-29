@@ -56,6 +56,10 @@ void Cal3_S2::print(const std::string& s) const {
   gtsam::print(matrix(), s);
 }
 
+void Cal3_S2::print(std::ostream& os) const {
+  gtsam::print(matrix(), "", os);
+}
+
 /* ************************************************************************* */
 bool Cal3_S2::equals(const Cal3_S2& K, double tol) const {
   if (fabs(fx_ - K.fx_) > tol)

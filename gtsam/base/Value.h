@@ -96,6 +96,9 @@ namespace gtsam {
     /** Print this value, for debugging and unit tests */
     virtual void print(const std::string& str = "") const = 0;
 
+    /** Print this value, for debugging and unit tests */
+    virtual void print(std::ostream& os) const = 0;
+
     /** Return the dimensionality of the tangent space of this value.  This is
      * the dimensionality of \c delta passed into retract() and of the vector
      * returned by localCoordinates().
@@ -124,6 +127,11 @@ namespace gtsam {
 
     /** Virutal destructor */
     virtual ~Value() {}
+
+    GTSAM_EXPORT friend std::ostream &operator<<(std::ostream &os, const Value& value) {
+        value.print();
+        return os;
+    }
 
   private:
     /** Empty serialization function.

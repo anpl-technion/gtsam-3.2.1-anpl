@@ -65,6 +65,13 @@ public:
     K_->print(s + ".calibration.");
   }
 
+  void print(std::ostream& os) const {
+    os << ".camera.";
+    leftCamPose_.print(os);
+    os << ".calibration.";
+    K_->print(os);
+  }
+
   bool equals(const StereoCamera &camera, double tol = 1e-9) const {
     return leftCamPose_.equals(camera.leftCamPose_, tol) && K_->equals(
         *camera.K_, tol);

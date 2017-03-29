@@ -103,6 +103,10 @@ void Unit3::print(const std::string& s) const {
   cout << s << ":" << p_ << endl;
 }
 
+void Unit3::print(std::ostream& os) const {
+  os << ":" << p_ << endl;
+}
+
 /* ************************************************************************* */
 Matrix Unit3::skew() const {
   return skewSymmetric(p_.x(), p_.y(), p_.z());

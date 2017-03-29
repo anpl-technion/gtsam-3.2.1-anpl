@@ -231,4 +231,12 @@ namespace gtsam {
     return message_.c_str();
   }
 
+
+  ostream &operator<<(ostream &os, const Values& values) {
+    os << "Values with " << values.size() << " values:" << endl;
+    for(Values::const_iterator key_value = values.begin(); key_value != values.end(); ++key_value) {
+      os << "Value " << key_value->key << ": ";
+      key_value->value.print(os);
+    }
+  }
 }

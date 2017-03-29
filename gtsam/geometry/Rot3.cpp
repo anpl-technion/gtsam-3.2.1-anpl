@@ -34,6 +34,10 @@ void Rot3::print(const std::string& s) const {
   gtsam::print((Matrix)matrix(), s);
 }
 
+void Rot3::print(std::ostream& os) const {
+  gtsam::print((Matrix)matrix(), "R", os);
+}
+
 /* ************************************************************************* */
 Rot3 Rot3::rodriguez(const Point3& w, double theta) {
   return rodriguez((Vector)w.vector(),theta);

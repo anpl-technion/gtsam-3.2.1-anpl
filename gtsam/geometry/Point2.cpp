@@ -34,6 +34,10 @@ void Point2::print(const string& s) const {
   cout << s << *this << endl;
 }
 
+void Point2::print(std::ostream& os) const {
+  os << *this << endl;
+}
+
 /* ************************************************************************* */
 bool Point2::equals(const Point2& q, double tol) const {
   return (fabs(x_ - q.x()) < tol && fabs(y_ - q.y()) < tol);

@@ -56,6 +56,15 @@ void PoseRTV::print(const string& s) const {
   v_.print("  V");
 }
 
+void PoseRTV::print(std::ostream& os) const {
+  os << ":" << endl;
+  gtsam::print((Vector)R().xyz(), "  R:rpy");
+  os << "  T";
+  t().print(os);
+  os << "  V";
+  v_.print(os);
+}
+
 /* ************************************************************************* */
 PoseRTV PoseRTV::Expmap(const Vector& v) {
   assert(v.size() == 9);

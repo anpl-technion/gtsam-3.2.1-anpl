@@ -75,7 +75,9 @@ public:
   /// @{
 
   /// print with optional string
-  void print(const std::string& s = "") const ;
+  void print(const std::string& s = "") const;
+
+  void print(std::ostream& os) const;
 
   /// assert equality up to a tolerance
   bool equals(const Cal3Unified& K, double tol = 10e-9) const;

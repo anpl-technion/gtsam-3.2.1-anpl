@@ -89,6 +89,13 @@ public:
     std::cout << "}" << std::endl;
   }
 
+  GTSAM_EXPORT friend std::ostream &operator<<(std::ostream &os, const NonlinearFactor& factor) {
+    os << "keys = { ";
+    BOOST_FOREACH(Key key, factor.keys()) { os << key << " "; }
+    os << "}" << std::endl;
+    return os;
+  }
+
   /** Check if two factors are equal */
   virtual bool equals(const NonlinearFactor& f, double tol = 1e-9) const {
     return Base::equals(f);

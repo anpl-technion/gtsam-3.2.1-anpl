@@ -43,6 +43,11 @@ void Cal3DS2_Base::print(const std::string& s_) const {
   gtsam::print(Vector(k()), s_ + ".k");
 }
 
+void Cal3DS2_Base::print(std::ostream& os) const {
+  gtsam::print(K(), ".K", os);
+  gtsam::print(Vector(k()), ".k", os);
+}
+
 /* ************************************************************************* */
 bool Cal3DS2_Base::equals(const Cal3DS2_Base& K, double tol) const {
   if (fabs(fx_ - K.fx_) > tol || fabs(fy_ - K.fy_) > tol || fabs(s_ - K.s_) > tol ||

@@ -55,6 +55,10 @@ void Cal3Bundler::print(const std::string& s) const {
   gtsam::print((Vector)(Vector(5) << f_, k1_, k2_, u0_, v0_), s + ".K");
 }
 
+void Cal3Bundler::print(std::ostream& os) const {
+  gtsam::print((Vector)(Vector(5) << f_, k1_, k2_, u0_, v0_), ".K", os);
+}
+
 /* ************************************************************************* */
 bool Cal3Bundler::equals(const Cal3Bundler& K, double tol) const {
   if (fabs(f_ - K.f_) > tol || fabs(k1_ - K.k1_) > tol

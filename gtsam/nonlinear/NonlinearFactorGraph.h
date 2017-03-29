@@ -150,6 +150,9 @@ namespace gtsam {
      */
     NonlinearFactorGraph rekey(const std::map<Key,Key>& rekey_mapping) const;
 
+        /// Output stream operator
+    GTSAM_EXPORT friend std::ostream &operator<<(std::ostream &os, const NonlinearFactorGraph& graph);
+
   private:
 
     /** Serialization function */

@@ -49,6 +49,10 @@ void Pose2::print(const string& s) const {
   cout << s << "(" << t_.x() << ", " << t_.y() << ", " << r_.theta() << ")" << endl;
 }
 
+void Pose2::print(ostream& os) const {
+  os << "(" << t_.x() << ", " << t_.y() << ", " << r_.theta() << ")" << endl;
+}
+
 /* ************************************************************************* */
 bool Pose2::equals(const Pose2& q, double tol) const {
   return t_.equals(q.t_, tol) && r_.equals(q.r_, tol);

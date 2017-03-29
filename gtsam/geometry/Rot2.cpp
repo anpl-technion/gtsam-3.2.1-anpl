@@ -47,6 +47,10 @@ void Rot2::print(const string& s) const {
   cout << s << ": " << theta() << endl;
 }
 
+void Rot2::print(ostream& os) const {
+  os << "theta" << ": " << theta() << endl;
+}
+
 /* ************************************************************************* */
 bool Rot2::equals(const Rot2& R, double tol) const {
   return fabs(c_ - R.c_) <= tol && fabs(s_ - R.s_) <= tol;

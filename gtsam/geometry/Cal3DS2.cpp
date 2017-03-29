@@ -28,6 +28,10 @@ void Cal3DS2::print(const std::string& s_) const {
   Base::print(s_);
 }
 
+void Cal3DS2::print(std::ostream& os) const {
+  Base::print(os);
+}
+
 /* ************************************************************************* */
 bool Cal3DS2::equals(const Cal3DS2& K, double tol) const {
   if (fabs(fx_ - K.fx_) > tol || fabs(fy_ - K.fy_) > tol || fabs(s_ - K.s_) > tol ||

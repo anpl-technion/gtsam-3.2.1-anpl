@@ -364,6 +364,9 @@ namespace gtsam {
     ConstFiltered<ValueType>
     filter(const boost::function<bool(Key)>& filterFcn = &_truePredicate<Key>) const;
 
+  /// Output stream operator
+  GTSAM_EXPORT friend std::ostream &operator<<(std::ostream &os, const Values& values);
+
   private:
     // Filters based on ValueType (if not Value) and also based on the user-
     // supplied \c filter function.

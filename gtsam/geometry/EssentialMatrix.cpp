@@ -43,6 +43,13 @@ void EssentialMatrix::print(const string& s) const {
   aTb_.print("d: ");
 }
 
+void EssentialMatrix::print(ostream& os) const {
+  os << "R:\n";
+  aRb_.print(os);
+  os << "d: ";
+  aTb_.print(os);
+}
+
 /* ************************************************************************* */
 EssentialMatrix EssentialMatrix::retract(const Vector& xi) const {
   assert(xi.size() == 5);

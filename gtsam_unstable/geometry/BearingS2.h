@@ -62,6 +62,7 @@ public:
 
   /** print with optional string */
   void print(const std::string& s = "") const;
+  void print(std::ostream& os) const;
 
   /** assert equality up to a tolerance */
   bool equals(const BearingS2& x, double tol = 1e-9) const;

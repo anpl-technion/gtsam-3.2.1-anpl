@@ -61,6 +61,12 @@ namespace gtsam {
       std::cout << s << "Baseline: " << b_ << std::endl;
     }
 
+    void print(std::ostream& os) const {
+      os << "K: ";
+      K_.print(os);
+      os << "Baseline: " << b_ << std::endl;
+    }
+
     /// Check if equal up to specified tolerance
     bool equals(const Cal3_S2Stereo& other, double tol = 10e-9) const {
       if (fabs(b_ - other.b_) > tol) return false;

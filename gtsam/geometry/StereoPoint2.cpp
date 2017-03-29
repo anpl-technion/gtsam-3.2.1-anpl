@@ -25,4 +25,8 @@ using namespace gtsam;
 void StereoPoint2::print(const string& s) const {
   cout << s << "(" << uL_ << ", " << uR_ << ", " << v_ << ")"  << endl;
 }
+
+void StereoPoint2::print(ostream& os) const {
+  os << "(" << uL_ << ", " << uR_ << ", " << v_ << ")"  << endl;
+}
 /* ************************************************************************* */

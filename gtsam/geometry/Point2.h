@@ -106,6 +106,8 @@ public:
   /// print with optional string
   void print(const std::string& s = "") const;
 
+  void print(std::ostream& os) const;
+
   /// equals with an tolerance, prints out message if unequal
   bool equals(const Point2& q, double tol = 1e-9) const;
 

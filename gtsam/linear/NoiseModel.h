@@ -65,6 +65,7 @@ namespace gtsam {
       inline size_t dim() const { return dim_;}
 
       virtual void print(const std::string& name = "") const = 0;
+      virtual void print(std::ostream& os) const = 0;
 
       virtual bool equals(const Base& expected, double tol=1e-9) const = 0;
 
@@ -181,6 +182,7 @@ namespace gtsam {
       static shared_ptr Covariance(const Matrix& covariance, bool smart = true);
 
       virtual void print(const std::string& name) const;
+      virtual void print(std::ostream& os) const;
       virtual bool equals(const Base& expected, double tol=1e-9) const;
       virtual Vector whiten(const Vector& v) const;
       virtual Vector unwhiten(const Vector& v) const;
@@ -302,6 +304,7 @@ namespace gtsam {
       }
 
       virtual void print(const std::string& name) const;
+      virtual void print(std::ostream& os) const;
       virtual Vector whiten(const Vector& v) const;
       virtual Vector unwhiten(const Vector& v) const;
       virtual Matrix Whiten(const Matrix& H) const;
@@ -457,6 +460,7 @@ namespace gtsam {
       }
 
       virtual void print(const std::string& name) const;
+      virtual void print(std::ostream& os) const;
 
       /// Calculates error vector with weights applied
       virtual Vector whiten(const Vector& v) const;
@@ -539,6 +543,7 @@ namespace gtsam {
       }
 
       virtual void print(const std::string& name) const;
+      virtual void print(std::ostream& os) const;
       virtual double Mahalanobis(const Vector& v) const;
       virtual Vector whiten(const Vector& v) const;
       virtual Vector unwhiten(const Vector& v) const;
@@ -587,6 +592,7 @@ namespace gtsam {
       }
 
       virtual void print(const std::string& name) const;
+      virtual void print(std::ostream& os) const;
       virtual double Mahalanobis(const Vector& v) const {return v.dot(v); }
       virtual Vector whiten(const Vector& v) const { return v; }
       virtual Vector unwhiten(const Vector& v) const { return v; }
@@ -631,6 +637,7 @@ namespace gtsam {
         virtual double weight(const double &error) const = 0;
 
         virtual void print(const std::string &s) const = 0;
+        virtual void print(std::ostream &os) const = 0;
         virtual bool equals(const Base& expected, const double tol=1e-8) const = 0;
 
         inline double sqrtWeight(const double &error) const
@@ -668,6 +675,7 @@ namespace gtsam {
         virtual ~Null() {}
         virtual double weight(const double &error) const { return 1.0; }
         virtual void print(const std::string &s) const;
+        virtual void print(std::ostream &os) const;
         virtual bool equals(const Base& expected, const double tol=1e-8) const { return true; }
         static shared_ptr Create() ;
 
@@ -689,6 +697,7 @@ namespace gtsam {
         virtual ~Fair() {}
         virtual double weight(const double &error) const ;
         virtual void print(const std::string &s) const ;
+        virtual void print(std::ostream& os) const;
         virtual bool equals(const Base& expected, const double tol=1e-8) const ;
         static shared_ptr Create(const double c, const ReweightScheme reweight = Block) ;
 
@@ -714,6 +723,7 @@ namespace gtsam {
         Huber(const double k = 1.345, const ReweightScheme reweight = Block);
         virtual double weight(const double &error) const ;
         virtual void print(const std::string &s) const ;
+        virtual void print(std::ostream& os) const;
         virtual bool equals(const Base& expected, const double tol=1e-8) const ;
         static shared_ptr Create(const double k, const ReweightScheme reweight = Block) ;
 
@@ -741,8 +751,9 @@ namespace gtsam {
 
         virtual ~Cauchy() {}
         Cauchy(const double k = 0.1, const ReweightScheme reweight = Block);
-        virtual double weight(const double &error) const ;
-        virtual void print(const std::string &s) const ;
+        virtual double weight(const double &error) const;
+        virtual void print(const std::string &s) const;
+        virtual void print(std::ostream& os) const;
         virtual bool equals(const Base& expected, const double tol=1e-8) const ;
         static shared_ptr Create(const double k, const ReweightScheme reweight = Block) ;
 
@@ -766,8 +777,9 @@ namespace gtsam {
 
         Tukey(const double c = 4.6851, const ReweightScheme reweight = Block);
         virtual ~Tukey() {}
-        virtual double weight(const double &error) const ;
-        virtual void print(const std::string &s) const ;
+        virtual double weight(const double &error) const;
+        virtual void print(const std::string &s) const;
+        virtual void print(std::ostream& os) const;
         virtual bool equals(const Base& expected, const double tol=1e-8) const ;
         static shared_ptr Create(const double k, const ReweightScheme reweight = Block) ;
 
@@ -792,7 +804,8 @@ namespace gtsam {
         Welsh(const double c = 2.9846, const ReweightScheme reweight = Block);
         virtual ~Welsh() {}
         virtual double weight(const double &error) const ;
-        virtual void print(const std::string &s) const ;
+        virtual void print(const std::string &s) const;
+        virtual void print(std::ostream& os) const;
         virtual bool equals(const Base& expected, const double tol=1e-8) const ;
         static shared_ptr Create(const double k, const ReweightScheme reweight = Block) ;
 
@@ -836,6 +849,7 @@ namespace gtsam {
       virtual ~Robust() {}
 
       virtual void print(const std::string& name) const;
+      virtual void print(std::ostream& os) const;
       virtual bool equals(const Base& expected, double tol=1e-9) const;
 
       /// Return the contained robust error function

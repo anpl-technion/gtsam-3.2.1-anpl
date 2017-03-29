@@ -36,6 +36,10 @@ void Point3::print(const string& s) const {
   cout << s << *this << endl;
 }
 
+void Point3::print(std::ostream& os) const {
+    os << *this << endl;
+}
+
 /* ************************************************************************* */
 
 bool Point3::operator==(const Point3& q) const {

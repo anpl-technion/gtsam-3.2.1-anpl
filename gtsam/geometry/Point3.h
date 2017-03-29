@@ -75,6 +75,8 @@ namespace gtsam {
     /** print with optional string */
     void print(const std::string& s = "") const;
 
+    void print(std::ostream& os) const;
+
     /** equals with an tolerance */
     bool equals(const Point3& p, double tol = 1e-9) const;
 

@@ -100,6 +100,8 @@ namespace gtsam {
     /** print */
     void print(const std::string& s = "theta") const;
 
+    void print(std::ostream& os) const;
+
     /** equals with an tolerance */
     bool equals(const Rot2& R, double tol = 1e-9) const;
 

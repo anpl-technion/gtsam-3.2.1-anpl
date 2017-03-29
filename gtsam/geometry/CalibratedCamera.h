@@ -70,6 +70,10 @@ public:
     pose_.print(s);
   }
 
+  virtual void print(std::ostream& os) const {
+    pose_.print(os);
+  }
+
   /// check equality to another camera
   bool equals(const CalibratedCamera &camera, double tol = 1e-9) const {
     return pose_.equals(camera.pose(), tol);

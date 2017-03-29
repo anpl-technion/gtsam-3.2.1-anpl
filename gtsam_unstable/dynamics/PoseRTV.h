@@ -66,6 +66,7 @@ public:
   // testable
   bool equals(const PoseRTV& other, double tol=1e-6) const;
   void print(const std::string& s="") const;
+  void print(std::ostream& os) const;
 
   // Manifold
   static size_t Dim() { return 9; }

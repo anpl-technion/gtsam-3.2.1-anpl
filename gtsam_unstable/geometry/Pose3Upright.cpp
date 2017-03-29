@@ -42,6 +42,9 @@ void Pose3Upright::print(const std::string& s) const {
   cout << s << "(" << T_.x() << ", " << T_.y() << ", " << z_ << ", " << T_.theta() << ")" << endl;
 }
 
+void Pose3Upright::print(std::ostream& os) const {
+  os << "(" << T_.x() << ", " << T_.y() << ", " << z_ << ", " << T_.theta() << ")" << endl;
+}
 /* ************************************************************************* */
 bool Pose3Upright::equals(const Pose3Upright& x, double tol) const {
   return T_.equals(x.T_, tol) && fabs(z_ - x.z_) < tol;

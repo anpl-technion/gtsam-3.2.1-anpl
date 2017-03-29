@@ -138,6 +138,13 @@ public:
     K_.print(s + ".calibration");
   }
 
+  void print(std::ostream& os) const {
+    os << "PinholeCamera.pose ";
+    pose_.print(os);
+    os << "PinholeCamera.calibration";
+    K_.print(os);
+  }
+
   /// @}
   /// @name Standard Interface
   /// @{
