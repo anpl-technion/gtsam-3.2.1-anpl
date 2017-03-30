@@ -86,6 +86,12 @@ namespace gtsam {
       Base::print("", keyFormatter);
     }
 
+    void print(std::ostream& os, const std::string& s="", const KeyFormatter& keyFormatter = DefaultKeyFormatter) const {
+      os << s << "BearingFactor, bearing = ";
+      measured_.print(os);
+      Base::print(os, "", keyFormatter);
+    }
+
   private:
 
     /** Serialization function */

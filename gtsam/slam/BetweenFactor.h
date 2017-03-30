@@ -78,6 +78,14 @@ namespace gtsam {
       this->noiseModel_->print("  noise model: ");
     }
 
+    virtual void print(std::ostream& os, const std::string& s, const KeyFormatter& keyFormatter = DefaultKeyFormatter) const {
+      os << s << "BetweenFactor("
+          << keyFormatter(this->key1()) << ","
+          << keyFormatter(this->key2()) << ")\n";
+      measured_.print(os, "  measured: ");
+      this->noiseModel_->print(os, "  noise model: ");
+    }
+
     /** equals */
     virtual bool equals(const NonlinearFactor& expected, double tol=1e-9) const {
       const This *e =  dynamic_cast<const This*> (&expected);
