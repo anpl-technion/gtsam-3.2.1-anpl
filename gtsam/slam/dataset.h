@@ -116,7 +116,7 @@ GTSAM_EXPORT void save2D(const NonlinearFactorGraph& graph,
  * @param kernelFunctionType whether to wrap the noise model in a robust kernel
  * @return graph and initial values
  */
-GTSAM_EXPORT GraphAndValues readG2o(const std::string& g2oFile, const bool is3D = false,
+GTSAM_EXPORT GraphAndValues readG2o(const std::string& g2oFile, const bool is3D = true,
     KernelFunctionType kernelFunctionType = KernelFunctionTypeNONE);
 
 /**
