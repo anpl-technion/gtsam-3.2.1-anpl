@@ -101,6 +101,9 @@
  *  - TODO: Add generalized serialization support via boost.serialization with hooks to matlab save/load
  */
 
+#include <boost/serialization/shared_ptr.hpp>
+#include <boost/serialization/weak_ptr.hpp>
+
 namespace std {
     #include <vector>
     template<T>
@@ -2044,6 +2047,8 @@ class ISAM2 {
   gtsam::NonlinearFactorGraph getFactorsUnsafe() const;
   gtsam::VariableIndex getVariableIndex() const;
   gtsam::ISAM2Params params() const;
+
+  void serialize() const;
 };
 
 #include <gtsam/nonlinear/NonlinearISAM.h>
