@@ -28,6 +28,7 @@
 #include <gtsam/base/DerivedValue.h>
 #include <gtsam/geometry/Point3.h>
 #include <gtsam/geometry/Rot3.h>
+#include <gtsam/base/FastVector.h>
 
 namespace gtsam {
 
@@ -350,5 +351,8 @@ inline Matrix wedge<Pose3>(const Vector& xi) {
  */
 typedef std::pair<Point3, Point3> Point3Pair;
 GTSAM_EXPORT boost::optional<Pose3> align(const std::vector<Point3Pair>& pairs);
+
+typedef std::vector<Pose3> Actions;
+typedef std::vector<Actions> ActionsPaths;
 
 } // namespace gtsam

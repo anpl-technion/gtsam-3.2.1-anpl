@@ -1761,6 +1761,46 @@ class KeyVector {
   void serialize() const;
 };
 
+class Actions {
+    Actions();
+    Actions(const gtsam::Actions& other);
+
+    // Note: no print function
+
+    // common STL methods
+    size_t size() const;
+    bool empty() const;
+    void clear();
+
+    // structure specific methods
+    gtsam::Pose3 at(size_t i) const;
+    gtsam::Pose3 front() const;
+    gtsam::Pose3 back() const;
+    void push_back(gtsam::Pose3& pose3);
+
+    void serialize();
+};
+
+class ActionsPaths {
+    ActionsPaths();
+    ActionsPaths(const gtsam::ActionsPaths& other);
+
+    // Note: no print function
+
+    // common STL methods
+    size_t size() const;
+    bool empty() const;
+    void clear();
+
+    // structure specific methods
+    gtsam::Actions at(size_t i) const;
+    gtsam::Actions front() const;
+    gtsam::Actions back() const;
+    void push_back(gtsam::Actions& actions);
+
+    void serialize();
+};
+
 // Actually a FastMap<Key,int>
 class KeyGroupMap {
   KeyGroupMap();
