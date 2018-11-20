@@ -335,13 +335,22 @@ boost::shared_ptr<FastSet<Key> > ISAM2::recalculate(const FastSet<Key>& markedKe
 
     gttic(add_keys);
     br::copy(variableIndex_ | br::map_keys, std::inserter(*affectedKeysSet, affectedKeysSet->end()));
+
+    // Removed unused keys:
+    VariableIndex affectedFactorsVarIndex = variableIndex_;
+
+    affectedFactorsVarIndex.removeUnusedVariables(unusedIndices.begin(), unusedIndices.end());
+
+    BOOST_FOREACH(Key key, unusedIndices)
+      affectedKeysSet->erase(key);
+
     gttoc(add_keys);
 
     gttic(ordering);
     Ordering order;
     if(constrainKeys)
     {
-      order = Ordering::COLAMDConstrained(variableIndex_, *constrainKeys);
+      order = Ordering::COLAMDConstrained(affectedFactorsVarIndex, *constrainKeys);
     }
     else
     {
@@ -351,11 +360,11 @@ boost::shared_ptr<FastSet<Key> > ISAM2::recalculate(const FastSet<Key>& markedKe
         FastMap<Key, int> constraintGroups;
         BOOST_FOREACH(Key var, observedKeys)
           constraintGroups[var] = 1;
-        order = Ordering::COLAMDConstrained(variableIndex_, constraintGroups);
+        order = Ordering::COLAMDConstrained(affectedFactorsVarIndex, constraintGroups);
       }
       else
       {
-        order = Ordering::COLAMD(variableIndex_);
+        order = Ordering::COLAMD(affectedFactorsVarIndex);
       }
     }
     gttoc(ordering);
@@ -367,7 +376,7 @@ boost::shared_ptr<FastSet<Key> > ISAM2::recalculate(const FastSet<Key>& markedKe
     gttoc(linearize);
 
     gttic(eliminate);
-    ISAM2BayesTree::shared_ptr bayesTree = ISAM2JunctionTree(GaussianEliminationTree(linearized, variableIndex_, order))
+    ISAM2BayesTree::shared_ptr bayesTree = ISAM2JunctionTree(GaussianEliminationTree(linearized, affectedFactorsVarIndex, order))
       .eliminate(params_.getEliminationFunction()).first;
     gttoc(eliminate);
 
