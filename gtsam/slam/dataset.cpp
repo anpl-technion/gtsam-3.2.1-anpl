@@ -18,6 +18,8 @@
 
 #include <gtsam/slam/dataset.h>
 #include <gtsam/slam/BetweenFactor.h>
+#include <gtsam/slam/StereoFactor.h>
+#include <gtsam/geometry/Cal3_S2Stereo.h>
 #include <gtsam/slam/BearingRangeFactor.h>
 #include <gtsam/geometry/Pose2.h>
 #include <gtsam/linear/Sampler.h>
@@ -508,6 +510,21 @@ GraphAndValues load3D(const string& filename) {
       Point3 t = Point3(x, y, z);
       initial->insert(id, Pose3(R,t));
     }
+	  if(tag == "VertexSBAPointXYZ") {
+		  Key id;
+      double x, y, z;
+      ls >> id >> x >> y >> z;
+      Point3 t = Point3(x, y, z);
+      initial->insert(id, t);
+	  }
+    i/*f(tag == "VertexSE3Expmap") {
+      Key id;
+      double x, y, z, qx, qy, qz, qw;
+      ls >> id >> x >> y >> z >> qx >> qy >> qz >> qw;
+      Rot3 R = Rot3::quaternion(qw, qx, qy, qz);
+      Point3 t = Point3(x, y, z);
+      initial->insert(id, Pose3(R,t));
+    }*/
   }
   is.clear(); /* clears the end-of-file and error flags */
   is.seekg(0, ios::beg);
@@ -556,6 +573,40 @@ GraphAndValues load3D(const string& filename) {
       mgtsam.block(3,0,3,3) = m.block(3,0,3,3); // off diagonal
       SharedNoiseModel model = noiseModel::Gaussian::Information(mgtsam);
       NonlinearFactor::shared_ptr factor(new BetweenFactor<Pose3>(id1, id2, Pose3(R,t), model));
+      graph->push_back(factor);
+    }
+
+    // EdgeSE3ProjectXYZ 298 8 103.68 143.424  0.334898 0 0.334898
+    // EdgeStereoSE3ProjectXYZ 298 11 103.68 143.078 94.9774 0.232568  0.232568 0 0 0.232568 0 0.232568
+    if (tag == "EdgeStereoSE3ProjectXYZ") {
+      Matrix m = eye(3);
+      Key id1, id2;
+      double u1, v1, u2, not_used;
+      ls >> id1 >> id2 >> u1 >> v1 >> u2 >> not_used;
+      for (int i = 0; i < 3; i++){
+        for (int j = i; j < 3; j++){
+          double mij;
+          ls >> mij;
+          m(i, j) = mij;
+          m(j, i) = mij;
+        }
+      }
+      
+      double fx, fy, skew, cx, cy, b;  
+      ls >> fx >> fy >> skew >> cx >> cy >> b;
+
+
+      Matrix R;
+      R << 1, 0, 0,
+                  0, 0, 1,
+                  0, 1, 0;
+      
+      SharedNoiseModel model = noiseModel::Gaussian::Information(R*m*R);
+      StereoPoint2 sp2(u1, u2, v1);
+
+      const Cal3_S2Stereo::shared_ptr K(new Cal3_S2Stereo(fx, fy, skew, cx, cy, b));
+
+      NonlinearFactor::shared_ptr factor(new  GenericStereoFactor<Pose3, Point3>(sp2, model, id2, id1, K));
       graph->push_back(factor);
     }
   }
