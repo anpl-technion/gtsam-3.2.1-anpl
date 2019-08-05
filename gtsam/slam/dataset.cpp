@@ -517,7 +517,7 @@ GraphAndValues load3D(const string& filename) {
       Point3 t = Point3(x, y, z);
       initial->insert(id, t);
 	  }
-    i/*f(tag == "VertexSE3Expmap") {
+    /*if(tag == "VertexSE3Expmap") {
       Key id;
       double x, y, z, qx, qy, qz, qw;
       ls >> id >> x >> y >> z >> qx >> qy >> qz >> qw;
@@ -577,7 +577,7 @@ GraphAndValues load3D(const string& filename) {
     }
 
     // EdgeSE3ProjectXYZ 298 8 103.68 143.424  0.334898 0 0.334898
-    // EdgeStereoSE3ProjectXYZ 298 11 103.68 143.078 94.9774 0.232568  0.232568 0 0 0.232568 0 0.232568
+    // EdgeStereoSE3ProjectXYZ 298 11 103.68 143.078 94.9774 0.232568  0.232568 0 0 0.232568 0 0.232568 600 600 0 320 240 0.12  
     if (tag == "EdgeStereoSE3ProjectXYZ") {
       Matrix m = eye(3);
       Key id1, id2;
@@ -595,12 +595,10 @@ GraphAndValues load3D(const string& filename) {
       double fx, fy, skew, cx, cy, b;  
       ls >> fx >> fy >> skew >> cx >> cy >> b;
 
-
-      Matrix R;
+      Matrix R(3,3);
       R << 1, 0, 0,
-                  0, 0, 1,
-                  0, 1, 0;
-      
+           0, 0, 1,
+           0, 1, 0;
       SharedNoiseModel model = noiseModel::Gaussian::Information(R*m*R);
       StereoPoint2 sp2(u1, u2, v1);
 
