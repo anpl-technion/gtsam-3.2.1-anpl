@@ -577,6 +577,16 @@ GraphAndValues load3D(const string& filename) {
     }
 
     // EdgeSE3ProjectXYZ 298 8 103.68 143.424  0.334898 0 0.334898
+      if (tag == "EdgeSE3ProjectXYZ") {
+          Matrix m = eye(2);
+          Key id1, id2;
+          double u, v, ScaleFactor;
+          ls >> id1 >> id2 >> u >> v >> ScaleFactor;
+          m = ScaleFactor*m;
+          SharedNoiseModel model = noiseModel::Gaussian::Information(m);
+//          NonlinearFactor::shared_ptr factor(new m<Pose3>(id1, id2, model));
+//          graph->push_back(factor);
+      }
     // EdgeStereoSE3ProjectXYZ 298 11 103.68 143.078 94.9774 0.232568  0.232568 0 0 0.232568 0 0.232568 600 600 0 320 240 0.12  
     if (tag == "EdgeStereoSE3ProjectXYZ") {
       Matrix m = eye(3);
