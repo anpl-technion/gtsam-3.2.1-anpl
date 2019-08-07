@@ -511,6 +511,14 @@ namespace gtsam {
           Point3 t = Point3(x, y, z);
           initial->insert(Symbol('x', id), Pose3(R,t));
         }
+        if (tag == "VERTEX_SE3:QUAT_FIXED") {
+          Key id;
+          double x, y, z, qx, qy, qz, qw;
+          ls >> id >> x >> y >> z >> qx >> qy >> qz >> qw;
+          Rot3 R = Rot3::quaternion(qw, qx, qy, qz);
+          Point3 t = Point3(x, y, z);
+          initial->insert(Symbol('x', id), Pose3(R,t));
+        }
         if(tag == "VertexSBAPointXYZ") {
           Key id;
           double x, y, z;
