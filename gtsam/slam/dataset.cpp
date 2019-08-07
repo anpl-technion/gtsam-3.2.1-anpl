@@ -501,7 +501,7 @@ namespace gtsam {
           ls >> id >> x >> y >> z >> roll >> pitch >> yaw;
           Rot3 R = Rot3::ypr(yaw,pitch,roll);
           Point3 t = Point3(x, y, z);
-          initial->insert(id, Pose3(R,t));
+          initial->insert(Symbol('x', id), Pose3(R,t));
         }
         if (tag == "VERTEX_SE3:QUAT") {
           Key id;
@@ -509,14 +509,14 @@ namespace gtsam {
           ls >> id >> x >> y >> z >> qx >> qy >> qz >> qw;
           Rot3 R = Rot3::quaternion(qw, qx, qy, qz);
           Point3 t = Point3(x, y, z);
-          initial->insert(id, Pose3(R,t));
+          initial->insert(Symbol('x', id), Pose3(R,t));
         }
         if(tag == "VertexSBAPointXYZ") {
           Key id;
           double x, y, z;
           ls >> id >> x >> y >> z;
           Point3 t = Point3(x, y, z);
-          initial->insert(id, t);
+          initial->insert(Symbol('l', id), t);
         }
         /*if(tag == "VertexSE3Expmap") {
           Key id;
@@ -573,7 +573,7 @@ namespace gtsam {
           mgtsam.block(0,3,3,3) = m.block(0,3,3,3); // off diagonal
           mgtsam.block(3,0,3,3) = m.block(3,0,3,3); // off diagonal
           SharedNoiseModel model = noiseModel::Gaussian::Information(mgtsam);
-          NonlinearFactor::shared_ptr factor(new BetweenFactor<Pose3>(id1, id2, Pose3(R,t), model));
+          NonlinearFactor::shared_ptr factor(new BetweenFactor<Pose3>(Symbol('x', id1), Symbol('x', id2), Pose3(R,t), model));
           graph->push_back(factor);
         }
 
