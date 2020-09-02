@@ -2160,6 +2160,9 @@ virtual class NonlinearEquality : gtsam::NoiseModelFactor {
 template<POSE, POINT>
 virtual class RangeFactor : gtsam::NoiseModelFactor {
   RangeFactor(size_t key1, size_t key2, double measured, const gtsam::noiseModel::Base* noiseModel);
+
+  // enabling serialization functionality
+  void serialize() const;
 };
 
 typedef gtsam::RangeFactor<gtsam::Pose2, gtsam::Point2> RangeFactorPosePoint2;
